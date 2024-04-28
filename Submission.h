@@ -1,3 +1,4 @@
+#include "Time.h"
 #pragma once
 /**
  * @brief This class represents the submission status (result) of a project for a group.
@@ -12,7 +13,7 @@ private:
     //The submission status indicating whether it's on time (true) or late (false)
     bool status;
     //The submit date.
-    int submitDate;
+    Time submitDate;
 
 public:
     /**
@@ -22,7 +23,7 @@ public:
      * @param submitDate The date that project was submited
      * @param status The submission status indicating whether it's on time (true) or late (false).
      */
-    Submission(int projectID, int groupID, int submitDate, bool status);
+    Submission(int projectID, int groupID, Time submitDate, bool status);
 
     /**
      * @brief Getter method for projectID.
@@ -66,11 +67,11 @@ public:
      * @brief Getter method for submitDate.
      * @return The date when the project was submitted.
      */
-    int getSubmitDate() const;
+    Time getSubmitDate() const;
 
     /**
      * @brief Setter method for submitDate.
      * @param The date when the project was submitted.
      */
-    void setSubmitDate(int submitDate);
+    void setSubmitDate(Time submitDate);
 };

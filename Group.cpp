@@ -1,16 +1,20 @@
 #include "Group.h"
 
-Group::Group(int groupID){}
+Group::Group(int groupID){
+	this->groupID = groupID;
+}
 
-Group::~Group(){}
+Group::~Group() = default;
 
-int Group::getGroupID() const{}
+int Group::getGroupID() const { return groupID; }
 
-void Group::setGroupID(int groupID){}
+void Group::setGroupID(int groupID) { this->groupID = groupID; }
 
-void Group::addNewStudent(Student* student){}
+//void Group::deleteStudent(Student* student){}
 
-void Group::deleteStudent(Student* student){}
+int Group::getNumberOfStudent() const { return studentList.size(); }
+
+void Group::addNewStudent(Student* student) {}
 
 void Group::saveGroupInfor(){}
 

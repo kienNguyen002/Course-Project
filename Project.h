@@ -1,3 +1,4 @@
+#include "Time.h"
 #include<string>
 #pragma once
 /**
@@ -9,9 +10,9 @@ private:
 	//The unique or signature identifier of the project
 	int projectID;
 	//Description about project
-	std::string descripton;
+	std::string description;
 	//The deadline of project, possible to replace by time_t type
-	int dueDate;
+	Time dueDate;
 public:
 	/**
 	 * @brief Constructor for Project class.
@@ -19,7 +20,7 @@ public:
 	 * @param projectID The unique identifier of the project.
 	 * @param dueDate The deadline of the project.
 	 */
-	Project(int projectID, int dueDate);
+	Project(int projectID, Time dueDate);
 
 	/**
 	 * @brief Constructor for Project class.
@@ -28,7 +29,7 @@ public:
 	 * @param description The description of the project.
 	 * @param dueDate The deadline of the project.
 	 */
-	Project(int projectID, std::string description, int dueDate);
+	Project(int projectID, std::string description, Time dueDate);
 
 	/**
 	 * @brief Getter method for projectID.
@@ -42,7 +43,7 @@ public:
 	* 
 	* @param projectID The new projectID to set.
 	*/
-	void setProjectID();
+	void setProjectID(int projectID);
 
 	/**
 	 * @brief Getter method for description.
@@ -63,14 +64,14 @@ public:
 	 * 
 	 * @return The due date of the project.
 	 */
-	int getDueDate() const;
+	Time getDueDate() const;
 
 	/**
 	 * @brief Setter method for dueDate.
 	 *
 	 * @param The new due date of the project.
 	 */
-	void setDueDate(int dueDate);
+	void setDueDate(Time dueDate);
 
 	/**
 	 * @brief Convert the Project object to a string representation.

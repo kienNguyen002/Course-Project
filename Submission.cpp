@@ -1,24 +1,29 @@
 #include "Submission.h"
 
-Submission::Submission(int projectID, int groupID, int submitDate, bool status){}
+Submission::Submission(int projectID, int groupID, Time submitDate, bool status) {
+	this->projectID = projectID;
+	this->groupID = groupID;
+	this->submitDate = submitDate;
+	this->status = status;
+}
 
-int Submission::getProjectID() const{}
-
-
-void Submission::setProjectID(int projectID){}
-
-
-int Submission::getGroupID() const{}
-
-
-void Submission::setGroupID(int groupID){}
+int Submission::getProjectID() const { return projectID; }
 
 
-bool Submission::getStatus() const{}
+void Submission::setProjectID(int projectID) { this->projectID = projectID; }
 
 
-void Submission::setStatus(bool status){}
+int Submission::getGroupID() const { return groupID; }
 
-int Submission::getSubmitDate() const {}
 
-void Submission::setSubmitDate(int submitDate){}
+void Submission::setGroupID(int groupID) { this->groupID = groupID; }
+
+
+bool Submission::getStatus() const { return status; }
+
+
+void Submission::setStatus(bool status) { this->status = status; }
+
+Time Submission::getSubmitDate() const { return submitDate; }
+
+void Submission::setSubmitDate(Time submitDate) { this->submitDate = submitDate; }

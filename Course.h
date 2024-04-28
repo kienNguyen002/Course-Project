@@ -7,9 +7,9 @@ class Course
 private:
 	std::string courseID;
 
-	int number_projects;
+	int number_of_projects;
 
-	int number_groups;
+	int number_of_groups;
 
 	std::vector<Group*> groupList;
 
@@ -25,6 +25,11 @@ public:
 	* @param courseID the signature indenfier of this course
 	*/
 	Course(std::string courseID);
+
+	int getNumberOfProjects() const;
+	void setNumberOfProjects(int number_of_projects);
+	int getNumberOfGroups() const;
+	void setNumbeOfGroups(int number_of_groups);
 	
 	/**
 	* @brief This funtion use for adding new student into studentList

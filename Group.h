@@ -42,11 +42,14 @@ public:
      */
     void addNewStudent(Student* student);
 
-    /**
-     * @brief Delete a student from the group.
-     * @param student Pointer to the Student object to be deleted from the group
-     */
-    void deleteStudent(Student* student);
+    ///**
+    // * @brief Delete a student from the group.
+    // * @param student Pointer to the Student object to be deleted from the group
+    // */
+    //void deleteStudent(Student* student);
+
+    int getNumberOfStudent() const;
+
 
     /**
      * @brief Save the group information to a file.
