@@ -1,4 +1,5 @@
-﻿#include "Group.H"
+﻿#include<iostream>
+#include "Group.H"
 #include "Submission.h"
 #include "Project.h"
 #pragma once
@@ -70,7 +71,7 @@ public:
 	* 
 	* @param projectID The signature identifier of a project, has to be unique
 	*/
-	void addNewProject(int projectID);
+	void addNewProject(int projectID, Time dueDate);
 
 	/**
 	* @brief This function is submit method, use for submitting a submisstion
@@ -130,7 +131,7 @@ public:
 	* @return Kết quả nộp bài của một nhóm cho tất cả các project (một danh sách các đối tượng submission)
 	*
 	*/
-	Submission* findSubmissionByGroupID(int projectID);
+	Submission* findSubmissionByGroupID(int groupID);
 
 	/**
 	* @brief Kiểm tra kết quả nộp bài theo trạng thái (đúng hạn hoặc muộn)
@@ -140,7 +141,7 @@ public:
 	* @return kết quả nộp bài của các nhóm theo trạng thái muốn kiểm tra (một danh sách các đối tượng submission)
 	*
 	*/
-	Submission* findSubmissionByStatus(bool status);
+	Submission** findSubmissionByStatus(int project, bool status);
 
 	/**
 	* @brief Kiểm tra kết quả nộp bài theo ngày
@@ -150,8 +151,11 @@ public:
 	* @return kiểm tra xem đã có bao nhiêu nhóm đã nộp bài tới ngày muốn kiểm tra (danh sách cách đối tượng submission)
 	*
 	*/
-	Submission* findSubmissionToDueDate(int dueDate);
+	Submission** findSubmissionToDate(int projectID, Time date);
 
+	//Submission** submissionList = course.findSubmissionByStatus(int project, bool status);
+	//.....
+	//delete[] submissionList;
 	
 	
 
