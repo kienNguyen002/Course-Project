@@ -1,22 +1,2 @@
-﻿  Course.cpp
-  Group.cpp
-D:\for Class\CS255\Course Project interfaces\Group.cpp(22,25): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  main.cpp
-  Project.cpp
-  Submission.cpp
-  Student.cpp
-  time.cpp
-  Generating Code...
-D:\for Class\CS255\Course Project interfaces\Student.cpp(33): error C4716: 'Student::toString': must return a value
-D:\for Class\CS255\Course Project interfaces\Submission.cpp(5): error C4716: 'Submission::getProjectID': must return a value
-D:\for Class\CS255\Course Project interfaces\Submission.cpp(11): error C4716: 'Submission::getGroupID': must return a value
-D:\for Class\CS255\Course Project interfaces\Submission.cpp(17): error C4716: 'Submission::getStatus': must return a value
-D:\for Class\CS255\Course Project interfaces\Submission.cpp(22): error C4716: 'Submission::getSubmitDate': must return a value
-D:\for Class\CS255\Course Project interfaces\Project.cpp(39): error C4716: 'Project::toString': must return a value
-D:\for Class\CS255\Course Project interfaces\Course.cpp(13): error C4716: 'Course::findProjectbyID': must return a value
-D:\for Class\CS255\Course Project interfaces\Course.cpp(11): error C4716: 'Course::findGroupByID': must return a value
-D:\for Class\CS255\Course Project interfaces\Course.cpp(17): error C4716: 'Course::findSubmissionByProjectID': must return a value
-D:\for Class\CS255\Course Project interfaces\Course.cpp(19): error C4716: 'Course::findSubmissionByGroupID': must return a value
-D:\for Class\CS255\Course Project interfaces\Course.cpp(21): error C4716: 'Course::findSubmissionByStatus': must return a value
-D:\for Class\CS255\Course Project interfaces\Course.cpp(15): error C4716: 'Course::findSubmission': must return a value
-D:\for Class\CS255\Course Project interfaces\Course.cpp(23): error C4716: 'Course::findSubmissionToDueDate': must return a value
+﻿MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+D:\for Class\CS255\Course Project interfaces\x64\Debug\Course Project interfaces.exe : fatal error LNK1120: 1 unresolved externals

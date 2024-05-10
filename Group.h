@@ -65,5 +65,6 @@ public:
     /**
      * @brief Display the group information.
      */
-    void displayGroupInfor();
+    void displayGroupInfor() const;
 };
+#pragma once

@@ -1,7 +1,6 @@
 
 #include "Course.h"
 
-static int group_id_auto_increasement = 1;
 Course::Course(std::string courseID){}
 
 int Course::getNumberOfProjects() const {
@@ -17,43 +16,25 @@ void Course::setNumbeOfGroups(int number_of_groups) {
 	this->number_of_groups=number_of_groups;
 }
 
-void Course::addNewStudent(std::string studentName){
-	Student* newStudent = new Student(studentName);
+void Course::addNewStudent(int studentID, std::string studentName){
+	Student* newStudent = new Student(studentID, studentName);
 	studentList.push_back(newStudent);
 }
 void Course::addNewGroup(int groupID){
 	Group* newGroup = new Group(groupID);
-	std::cout << "Do you want to add any student into group? 1:Yes 2:No";
-	int choice;
-	std::cin >> choice;
-	if (choice == 2) {
-		newGroup->~Group();
-	}
-	else {
-		while (true)
-		{
-			std::cout << "Input student name";
-			std::string studentName;
-			std::cin.clear();
-			std::getline(std::cin, studentName);
-			Student* newStudent = new Student(studentName);
-			studentList.push_back(newStudent);
-			addStudentToAGroup(newStudent, groupID);
-			std::cout << "Do you want to add any student into group? 1:Yes 2:No";
-			int choice;
-			std::cin >> choice;
-			if (choice == 2) {
-				break;
-			}
-		}
-		groupList.push_back(newGroup);
-		number_of_groups++;
-	}
+	groupList.push_back(newGroup);
 	
 }
 void Course::addStudentToAGroup(Student* student, int groupID) {
-	Group* group = findGroupByID(groupID);
-	group->addNewStudent(student);
+	if (student->getGroupStatus() == true) {
+		std::cout << "This student was in another group, can not add";
+	}
+	else
+	{
+		Group* group = findGroupByID(groupID);
+		group->addNewStudent(student);
+	}
+
 }
 void Course::deleteStudentFromAGroup(){
 }
@@ -62,15 +43,23 @@ void Course::addNewProject(int projectID, Time dueDate){
 	projectList.push_back(newProject);
 
 }
-void Course::submit(int groupID, int projectID, int submitDate){
+void Course::submit(int groupID, int projectID, Time submitDate){
 	Project* project = findProjectbyID(projectID);
-	Time dueDate;
-	dueDate = project->getDueDate();
-	//bool status = dueDate.comparison(submitDate)
-	Submission* submission_result = new Submission(groupID, projectID, submitDate, status);
+	Time dueDate= project->getDueDate();
+	bool status = dueDate.isOnTime(submitDate);
+	Submission* submission_result = new Submission(projectID, groupID, submitDate, status);
 	submissionList.push_back(submission_result);
 }
+Student* Course::findStudentByID(int studentID) {
+	for (Student* student : studentList) {
+		if (student->getStudentID() == studentID)
+		{
+			return student;
+		}
+	}
+	return nullptr;
 
+}
 Group* Course::findGroupByID(int ID){
 	for (Group* group : groupList) {
 		if (group->getGroupID() == ID) {
@@ -90,52 +79,82 @@ Project* Course::findProjectbyID(int ID){
 }
 
 Submission* Course::findSubmission(int projectID, int groupID){
-	for (Submission* submission : submissionList) {
-		if (submission->getGroupID() == groupID && submission->getProjectID() == projectID) {
+	for (auto submission : submissionList) {
+		if ((submission->getGroupID() == groupID) && (submission->getProjectID() == projectID)) {
 			return submission;
 		}
 	}
 	return nullptr;
 }
 
-Submission* Course::findSubmissionByProjectID(int projectID){
-	for (Submission* submission : submissionList) {
-		if (submission->getProjectID() == projectID) {
-			return submission;
+void Course::statSubmissionByProjectID(int projectID){
+	if (findProjectbyID(projectID) == nullptr) {
+		std::cout << "Can not find project id";
+	}
+	else {
+		int i = 0;
+		for (Submission* submission : submissionList) {
+			if (submission->getProjectID() == projectID) {
+				std::cout << submission->submissionInfor() << std::endl;
+				i++;
+			}
+		}
+		if (i == 0) {
+			std::cout << "Can not find submission information" << projectID;
 		}
 	}
-	return nullptr;
 }
 
-Submission* Course::findSubmissionByGroupID(int groupID){
-	for (Submission* submission : submissionList) {
-		if (submission->getGroupID() == groupID) {
-			return submission;
+void Course::statSubmissionByGroupID(int groupID) {
+	if (findGroupByID(groupID) == nullptr) {
+		std::cout << "Can not find group id";
+	}
+	else {
+		int i = 0;
+		for (Submission* submission : submissionList) {
+			if (submission->getGroupID() == groupID) {
+				std::cout << submission->submissionInfor() << std::endl;
+				i++;
+			}
+		}
+		if (i == 0) {
+			std::cout << "Can not find submission information" << groupID;
 		}
 	}
-	return nullptr;
 }
 
-Submission** Course::findSubmissionByStatus(int projectID, bool status){
-	Submission** submissionByStatus = new Submission*[number_of_groups];
+void Course::statSubmissionByStatus(int projectID, bool status){
+	if (findProjectbyID(projectID) == nullptr) {
+		std::cout << "Can not fine the project ID";
+	}
+	else{
 	int i = 0;
 	for (Submission* submission : submissionList) {
 		if (submission->getProjectID()==projectID && submission->getStatus() == status) {
-			submissionByStatus[i] = submission;
+			std::cout << submission->submissionInfor()<<std::endl;
 			i++;
 		}
 	}
-	return submissionByStatus;
+	if(i==0){	
+	 std::cout << "Can not find submission information";
+	}
+	}
 }
 
-Submission** Course::findSubmissionToDate(int projectID, Time date){
-	Submission** submissionToDueDate = new Submission * [number_of_groups];
-	int i = 0;
-	for (Submission* submission : submissionList) {
-		if (submission->getProjectID() == projectID && submission->getSubmitDate.comparison(date)== true) {
-			submissionToDueDate[i] = submission;
-			i++;
+void Course::statSubmissionToDate(int projectID, Time date){
+	if (findProjectbyID(projectID) == nullptr) {
+		std::cout << "Can not fine the project ID";
+	}
+	else {
+		int i = 0;
+		for (Submission* submission : submissionList) {
+			if (submission->getProjectID() == projectID && (submission->getSubmitDate().isOnTime(date)==false)){
+				std::cout << submission->submissionInfor()<< std::endl;
+				i++;
+			}
+		}
+		if (i == 0) {
+			std::cout << "Can not find submission information";
 		}
 	}
-	return submissionToDueDate;
 }

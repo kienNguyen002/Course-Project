@@ -37,7 +37,7 @@ public:
 	* 
 	* @param studentName - the name of the student
 	*/
-	void addNewStudent(std::string studentName);
+    void addNewStudent(int studentID, std::string studentName);
 
 	/**
 	* @brief This function use for adding a new group into groupList
@@ -46,7 +46,7 @@ public:
 	* @param groupID The ID of the group, has to be unique 
 	* 
 	*/
-	void addNewGroup(int groupID);
+    void addNewGroup(int groupID);
 
 	/**
 	* @brief This funtion use for adding a new student into a group
@@ -85,8 +85,9 @@ public:
 	* @param projectID The ID of project
 	* @param submitDate the submitted date
 	*/
-	void submit(int groupID, int projectID, int submitDate);
+	void submit(int groupID, int projectID, Time submitDate);
 
+	Student* findStudentByID(int studentID);
 	/**
 	* @brief This function use for finding a group by its ID
 	* 
@@ -122,7 +123,7 @@ public:
 	* @return kết quả nộp bài của tất cả các nhóm theo project (một danh sách các đối tượng submission)
 	*
 	*/
-	Submission* findSubmissionByProjectID(int projectID);
+	void statSubmissionByProjectID(int projectID);
 
 	/**
 	* @brief This function use for finding a lis of submisstion with same ID
@@ -131,7 +132,7 @@ public:
 	* @return Kết quả nộp bài của một nhóm cho tất cả các project (một danh sách các đối tượng submission)
 	*
 	*/
-	Submission* findSubmissionByGroupID(int groupID);
+	void statSubmissionByGroupID(int groupID);
 
 	/**
 	* @brief Kiểm tra kết quả nộp bài theo trạng thái (đúng hạn hoặc muộn)
@@ -141,7 +142,7 @@ public:
 	* @return kết quả nộp bài của các nhóm theo trạng thái muốn kiểm tra (một danh sách các đối tượng submission)
 	*
 	*/
-	Submission** findSubmissionByStatus(int project, bool status);
+	void statSubmissionByStatus(int project, bool status);
 
 	/**
 	* @brief Kiểm tra kết quả nộp bài theo ngày
@@ -151,12 +152,9 @@ public:
 	* @return kiểm tra xem đã có bao nhiêu nhóm đã nộp bài tới ngày muốn kiểm tra (danh sách cách đối tượng submission)
 	*
 	*/
-	Submission** findSubmissionToDate(int projectID, Time date);
+	void statSubmissionToDate(int projectID, Time date);
 
-	//Submission** submissionList = course.findSubmissionByStatus(int project, bool status);
-	//.....
-	//delete[] submissionList;
-	
+
 	
 
 

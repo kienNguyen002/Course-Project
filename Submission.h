@@ -74,4 +74,6 @@ public:
      * @param The date when the project was submitted.
      */
     void setSubmitDate(Time submitDate);
+
+    std::string submissionInfor();
 };

@@ -12,7 +12,7 @@ void Group::setGroupID(int groupID) { this->groupID = groupID; }
 
 //void Group::deleteStudent(Student* student){}
 
-int Group::getNumberOfStudent() const { return studentList.size(); }
+int Group::getNumberOfStudent() const { return static_cast<int>(studentList.size()); }
 
 void Group::addNewStudent(Student* student) {
 	if (student->getGroupStatus() == true) {
@@ -20,7 +20,7 @@ void Group::addNewStudent(Student* student) {
 		return;
 	}
 	else {
-		student->setGroupID(groupID);
+		student->setGroupID(this->groupID);
 		student->setGroupStatus(true);
 		studentList.push_back(student);
 	}
@@ -31,8 +31,9 @@ void Group::addNewStudent(Student* student) {
 //
 //void Group::loadGroupInfor(){}
 //
-//void Group::displayGroupInfor(){}
-
-//1
-//Nguyen van A
-//Nguyen nguyen B
+void Group::displayGroupInfor() const{
+	std::cout << "\nGroup " << groupID << std::endl;
+	for (Student* student : studentList) {
+		std::cout << student->getStudentName() << std::endl;
+	}
+}

@@ -4,6 +4,7 @@ class Student
 {
 private:
 	//The Unique or signature identifier of a student
+	int studentID;
 	std::string studentName;
 	//represent that a student has joined a group or not
 	bool groupStatus;
@@ -15,8 +16,11 @@ public:
 	 *
 	 * @param studentName The name of the student.
 	 */
-	Student(std::string studentName);
+	Student(int studentID, std::string studentName);
 
+	int getStudentID() const;
+
+	void setStudentID(int studentID);
 	/**
 	 * @brief Getter method for name.
 	 *
@@ -36,7 +40,7 @@ public:
 	 *
 	 * @return True if the student is in a group, false otherwise.
 	 */
-	bool getGroupStatus();
+	bool getGroupStatus() const;
 
 	/**
 	 * @brief Setter method for groupStatus, whether the student belongs to a group (true) or not (false).
@@ -57,7 +61,7 @@ public:
      *
      * @return The ID of the student's group, or -1 if not in a group.
      */
-	int getGroupID();
+	int getGroupID() const;
 
 	/**
      * @brief Creates a string representation of the student object.

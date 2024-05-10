@@ -1,3 +1,4 @@
+#include<iomanip>
 #include "Submission.h"
 
 Submission::Submission(int projectID, int groupID, Time submitDate, bool status) {
@@ -27,3 +28,15 @@ void Submission::setStatus(bool status) { this->status = status; }
 Time Submission::getSubmitDate() const { return submitDate; }
 
 void Submission::setSubmitDate(Time submitDate) { this->submitDate = submitDate; }
+std::string Submission::submissionInfor() {
+	std::string status_sub;
+	std::string infor;
+	if (getStatus()) {
+		status_sub = "On time";
+	}
+	else {
+		status_sub = "late";
+	}
+	infor = "Project no" + std::to_string(getProjectID()) + " Group " + std::to_string(getGroupID()) + "  Status: "+ status_sub + " Submitted date: " + submitDate.toString();
+	return infor;
+}
